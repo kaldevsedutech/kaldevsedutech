@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import {
   ArrowRight,
@@ -36,6 +36,7 @@ const navItems = [
   ['Home', '/'],
   ['Services', '/services'],
   ['Products', '/products'],
+  ['WAPIMI', '/wapimi'],
   ['Career Hub', '/career-hub'],
   ['Innovation', '/innovation'],
   ['Workshops', '/workshops'],
@@ -48,6 +49,20 @@ const policyItems = [
   ['Terms & Conditions', '/terms-and-conditions'],
   ['Refund Policy', '/refund-policy'],
   ['Shipping & Delivery', '/shipping-delivery-policy']
+];
+
+const knownRoutes = [
+  '/',
+  '/services',
+  '/products',
+  '/wapimi',
+  '/career-hub',
+  '/innovation',
+  '/workshops',
+  '/support',
+  '/contact',
+  '/admin',
+  ...policyItems.map(([, href]) => href)
 ];
 
 const stats = [
@@ -482,6 +497,7 @@ function App() {
   };
 
   const visibleProducts = useMemo(() => [...products, ...dynamicProducts], [dynamicProducts]);
+  const isKnownRoute = knownRoutes.includes(currentPath);
   const year = useMemo(() => new Date().getFullYear(), []);
 
   return (
@@ -521,7 +537,7 @@ function App() {
         </button>
       </header>
 
-      <main data-page={currentPath}>
+      <main data-page={isKnownRoute ? currentPath : '/not-found'}>
         <section id="home" className="hero section-pad">
           <div className="hero-content">
             <img className="hero-logo" src="/logokaldevs.png" alt="KalDevsEduTech logo" />
@@ -810,6 +826,51 @@ function App() {
             </div>
           </div>
           <InquiryForm title="General Contact Form" />
+        </section>
+
+        <section id="wapimi" className="section-pad wapimi-page">
+          <div className="wapimi-shell">
+            <div>
+              <div className="section-kicker">WAPIMI</div>
+              <h1>WhatsApp Powered Marketing Intelligence</h1>
+              <p>
+                WAPIMI is a KalDevsEduTech product for WhatsApp-based marketing intelligence,
+                campaign automation, lead engagement, and customer conversation workflows.
+              </p>
+              <div className="hero-actions">
+                <a className="button primary" href="https://wapimi.vercel.app/" target="_blank" rel="noreferrer">
+                  Open WAPIMI <ArrowRight size={18} />
+                </a>
+                <a className="button ghost" href="/products" onClick={(event) => { event.preventDefault(); navigate('/products'); }}>
+                  Back to Products
+                </a>
+              </div>
+            </div>
+            <div className="wapimi-panel">
+              <MessageCircle size={34} />
+              <h2>Product Access</h2>
+              <p>
+                If the app does not open inside this page, use the Open WAPIMI button. This keeps the KalDevsEduTech route stable while the product runs on its own secure deployment.
+              </p>
+              <span>https://wapimi.vercel.app</span>
+            </div>
+          </div>
+        </section>
+
+        <section id="not-found" className="section-pad not-found-page">
+          <div className="not-found-shell">
+            <div className="section-kicker">404</div>
+            <h1>Page Not Found</h1>
+            <p>The page you are looking for is not available on KalDevsEduTech.</p>
+            <div className="hero-actions">
+              <a className="button primary" href="/" onClick={(event) => { event.preventDefault(); navigate('/'); }}>
+                Go Home <ArrowRight size={18} />
+              </a>
+              <a className="button ghost" href="/contact" onClick={(event) => { event.preventDefault(); navigate('/contact'); }}>
+                Contact Support
+              </a>
+            </div>
+          </div>
         </section>
 
         {Object.entries(policyPages).map(([path, page]) => (

@@ -3,14 +3,6 @@
   "outputDirectory": "dist",
   "rewrites": [
     {
-      "source": "/wapimi",
-      "destination": "https://wapimi.vercel.app/"
-    },
-    {
-      "source": "/wapimi/:path*",
-      "destination": "https://wapimi.vercel.app/:path*"
-    },
-    {
       "source": "/(.*)",
       "destination": "/index.html"
     }

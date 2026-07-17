@@ -114,6 +114,7 @@ textarea {
 main[data-page="/"] > section:not(#home):not(#stats):not(#about),
 main[data-page="/services"] > section:not(#services),
 main[data-page="/products"] > section:not(#products),
+main[data-page="/wapimi"] > section:not(#wapimi),
 main[data-page="/career-hub"] > section:not(#career-hub),
 main[data-page="/innovation"] > section:not(#innovation),
 main[data-page="/workshops"] > section:not(#workshops),
@@ -123,7 +124,8 @@ main[data-page="/privacy-policy"] > section:not(#privacy-policy),
 main[data-page="/terms-and-conditions"] > section:not(#terms-and-conditions),
 main[data-page="/refund-policy"] > section:not(#refund-policy),
 main[data-page="/shipping-delivery-policy"] > section:not(#shipping-delivery-policy),
-main[data-page="/admin"] > section:not(#admin) {
+main[data-page="/admin"] > section:not(#admin),
+main[data-page="/not-found"] > section:not(#not-found) {
   display: none;
 }
 
@@ -791,6 +793,64 @@ textarea:focus {
   box-shadow: 0 0 0 4px rgba(11, 61, 145, 0.1);
 }
 
+.wapimi-page,
+.not-found-page {
+  min-height: calc(100vh - 76px);
+  background:
+    radial-gradient(circle at 88% 16%, rgba(24, 165, 88, 0.12), transparent 28%),
+    linear-gradient(180deg, #ffffff, #f8fbff);
+}
+
+.wapimi-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.72fr);
+  gap: clamp(28px, 5vw, 68px);
+  align-items: center;
+  max-width: 1160px;
+  margin: 0 auto;
+}
+
+.wapimi-shell h1,
+.not-found-shell h1 {
+  margin-top: 18px;
+}
+
+.wapimi-shell p,
+.not-found-shell p {
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.wapimi-panel,
+.not-found-shell {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: clamp(26px, 4vw, 40px);
+  background: var(--white);
+  box-shadow: var(--shadow);
+}
+
+.wapimi-panel svg {
+  color: var(--green);
+}
+
+.wapimi-panel span {
+  display: inline-flex;
+  margin-top: 12px;
+  border-radius: 999px;
+  padding: 9px 12px;
+  color: var(--blue);
+  background: #eaf2ff;
+  font-weight: 800;
+}
+
+.not-found-shell {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+
 .footer {
   display: grid;
   grid-template-columns: 1fr auto;
@@ -872,6 +932,7 @@ textarea:focus {
 
   .hero,
   .split-section,
+  .wapimi-shell,
   .academic,
   .contact,
   .career-hub,
